@@ -13,25 +13,25 @@ app = Flask(__name__,
 CORS(app)
 
 
-@app.get("/api/health")
-def get_health():
-    t = str(datetime.now())
-    msg = {
-        "name": "F22-Starter-Microservice",
-        "health": "Good",
-        "at time": t
-    }
+# @app.get("/api/health")
+# def get_health():
+#     t = str(datetime.now())
+#     msg = {
+#         "name": "F22-Starter-Microservice",
+#         "health": "Good",
+#         "at time": t
+#     }
 
-    # DFF TODO Explain status codes, content type, ... ...
-    result = Response(json.dumps(msg), status=200, content_type="application/json")
+#     # DFF TODO Explain status codes, content type, ... ...
+#     result = Response(json.dumps(msg), status=200, content_type="application/json")
 
-    return result
+#     return result
 
 
-@app.route("/api/students/<uni>", methods=["GET"])
-def get_student_by_uni(uni):
+@app.route("/api/actor/<uni>", methods=["GET"])
+def get_actor(guid):
 
-    result = ColumbiaStudentResource.get_by_key(uni)
+    result = ActorResource.get_by_key(guid)
 
     if result:
         rsp = Response(json.dumps(result), status=200, content_type="application.json")
